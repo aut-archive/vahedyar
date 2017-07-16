@@ -12,13 +12,13 @@
             <form @submit.prevent="submit">
                 <div class="row">
                     <b-form-fieldset horizontal label="شماره دانشجویی" :state="v($v.stdNumber)" class="col-md-6" tabindex="1">
-                        <b-form-input v-model="$store.state.std.stdNumber" @input="$v.stdNumber.$touch"/>
+                        <b-form-input v-model="$store.state.std.stdNumber" @input="$v.stdNumber.$touch" :formatter="number"/>
                     </b-form-fieldset>
 
                     <b-form-fieldset horizontal label="کد ملی" :state="v($v.nationalNumber)" class="col-md-6" tabindex="2"
                         description="از کد ملی برای هویت سنجی دانشجو استفاده می شود."
                     >
-                        <b-form-input v-model="$store.state.std.nationalNumber" @input="$v.nationalNumber.$touch"/>
+                        <b-form-input v-model="$store.state.std.nationalNumber" @input="$v.nationalNumber.$touch" :formatter="number"/>
                     </b-form-fieldset>
                 </div>
 
@@ -42,6 +42,8 @@
 <script>
 import { mapState } from 'vuex'
 import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
+import { codemeli, stdNumber } from '~/plugins/vuelidate'
+import { transoformPersian } from '~/plugins/persian'
 
 export default {
   computed: {
@@ -50,8 +52,8 @@ export default {
     semesters: () => ['1', '2', '3', '4', '5', '6', '7', '8', '8 به بعد']
   },
   validations: {
-    nationalNumber: { required, minLength: minLength(10), maxLength: maxLength(10), numeric },
-    stdNumber: { required, minLength: minLength(7), maxLength: maxLength(8), numeric },
+    nationalNumber: { required, codemeli },
+    stdNumber: { required, stdNumber, minLength: minLength(7), maxLength: maxLength(8), numeric },
     entry: { required },
     semester: { required }
   },
@@ -64,11 +66,12 @@ export default {
       if (!this.$v.$invalid) {
         this.$router.push('/register')
       }
-    }
+    },
+    number: transoformPersian
   },
   watch: {
     stdNumber (val) {
-      let e = (val || '').substr(0, 2)
+      let e = String(val).substr(0, 2)
       if (this.entries.indexOf(e) === -1) {
         e = this.entries[this.entries.length - 1]
       }

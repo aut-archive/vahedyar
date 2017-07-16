@@ -11,6 +11,7 @@
     "@nuxtjs/proxy": "^1.1.1",
     "@nuxtjs/pwa": "^0.2.0",
     "body-parser": "^1.17.2",
+    "codemeli": "^1.0.3",
     "express": "^4.15.3",
     "fs-extra": "^4.0.0",
     "googleapis": "^20.1.0",
