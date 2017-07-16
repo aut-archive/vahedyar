@@ -3,6 +3,7 @@ module.exports = {
     color: '#d9534f'
   },
   build: {
+    extractCSS: true,
     extend (config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
