@@ -11,14 +11,14 @@
         <b-card header="اطلاعات دانشجو">
             <form @submit.prevent="submit">
                 <div class="row">
-                    <b-form-fieldset horizontal label="شماره دانشجویی" :state="v($v.stdNumber)" class="col-md-6" tabindex="1">
-                        <b-form-input v-model="$store.state.std.stdNumber" @input="$v.stdNumber.$touch" :formatter="number"/>
+                    <b-form-fieldset horizontal label="شماره دانشجویی" :state="v($v.stdNumber)" class="col-md-6">
+                        <b-form-input v-model="$store.state.std.stdNumber" @input="$v.stdNumber.$touch" :formatter="number" inputmode="numeric"/>
                     </b-form-fieldset>
 
-                    <b-form-fieldset horizontal label="کد ملی" :state="v($v.nationalNumber)" class="col-md-6" tabindex="2"
+                    <b-form-fieldset horizontal label="کد ملی" :state="v($v.nationalNumber)" class="col-md-6"
                         description="از کد ملی برای هویت سنجی دانشجو استفاده می شود."
                     >
-                        <b-form-input v-model="$store.state.std.nationalNumber" @input="$v.nationalNumber.$touch" :formatter="number"/>
+                        <b-form-input v-model="$store.state.std.nationalNumber" @input="$v.nationalNumber.$touch" :formatter="number" inputmode="numeric"/>
                     </b-form-fieldset>
                 </div>
 
