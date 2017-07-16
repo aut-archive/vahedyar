@@ -15,7 +15,7 @@
         <small><a href="https://fandogh.org" target="_blank"> گروه نرم افزاری فندق </a></small>
 
         <img src="~assets/ceit2.png" class="footer-logo"/>
-        <small><a href="">شورای صنفی دانشکده مهندسی کامپیوتر و فناوری اطلاعات امیرکبیر</a></small>
+        <small><a href="tg://resolve?domain=ceitshora">شورای صنفی دانشکده مهندسی کامپیوتر و فناوری اطلاعات امیرکبیر</a></small>
     </footer>
 
   </div>
