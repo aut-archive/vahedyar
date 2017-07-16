@@ -37,7 +37,7 @@
 }
 
 .app-footer {
-  height: 50px;
+  height: 50px !important;
   color: grey;
   display: flex;
   align-items: center;

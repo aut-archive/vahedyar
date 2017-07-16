@@ -48,8 +48,7 @@ export default {
       return {
         '': 'بر نمیدارم',
         'r': 'طبق چارت درسی باید بردارم',
-        'o': 'درس اختیاری برمیدارم',
-        'p': 'همنیاز درس دیگر'
+        'o': 'درس اختیاری برمیدارم'
       }
     },
     fields () {
@@ -62,20 +61,10 @@ export default {
     },
     courses () {
       return this.origCourses.sort((a, b) => {
-        let sd1 = Math.abs(a.semester - this.semester)
-        let sd2 = Math.abs(b.semester - this.semester)
-
-        if (sd1 !== sd2) {
-          return sd1 < sd2 ? -1 : +1
-        }
-
-        let ed1 = Math.abs(a.entry - this.entry)
-        let ed2 = Math.abs(b.entry - this.entry)
-        if (ed1 !== ed2) {
-          return ed1 < ed2 ? -1 : +1
-        }
-
-        return String(a).localeCompare(String(b))
+        const d1 = Math.abs(a.semester - this.semester) + Math.abs(a.entry - this.entry)
+        const d2 = Math.abs(b.semester - this.semester) + Math.abs(b.entry - this.entry)
+        if (d1 === d2) return 0
+        return d1 < d2 ? -1 : +1
       })
     }
   },
