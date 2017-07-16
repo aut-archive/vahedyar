@@ -11,9 +11,11 @@
     </div>
 
     <footer class="app-footer">
+      <img src="~assets/fandogh.png" class="footer-logo"/>
+      <a href="https://fandogh.org" target="_blank"> گروه نرم افزاری فندق </a>
+
+      <img src="~assets/ceit2.png" class="footer-logo"/>
       شورای صنفی دانشکده مهندسی کامپیوتر و فناوری اطلاعات امیرکبیر
-      |
-     <a href="https://fandogh.org" target="_blank"> گروه نرم افزاری فندق </a>
     </footer>
 
   </div>
@@ -36,14 +38,20 @@
 
 .app-footer {
   height: 50px;
-  color:white;
-  background: grey;
+  color: grey;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 30px;
+  border-top: 1px solid rgba(0,0,0,.1);
 }
 
 .app-footer a {
-  color: white;
+  color: grey;
+}
+
+.footer-logo {
+  width: 1.5em;
+  margin: 0 .5em;
 }
 </style>
