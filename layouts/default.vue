@@ -34,7 +34,7 @@
   flex: 1
 }
 
-footer {
+.app-footer {
   height: 50px;
   color:white;
   background: grey;
@@ -43,7 +43,7 @@ footer {
   padding: 0 30px;
 }
 
-footer a {
+.app-footer a {
   color: white;
 }
 </style>
