@@ -11,7 +11,7 @@ let courses = []
 let updateCourses = () => {}
 let submitApplicant = () => {}
 
-const allowedStates = ['required', 'optional', 'paraller', '']
+const allowedStates = ['r', 'p', 'o', '']
 
 Goopi({
   jwt: config.jwt,
