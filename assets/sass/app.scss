@@ -1,0 +1,36 @@
+@import "rtl";
+@import "../fonts/sahel/font-face.css";
+
+html, body {
+  background: #f7f7f7;
+  direction: rtl;
+}
+
+* {
+  font-family: 'Sahel', sans-serif !important;  
+}
+
+.progress {
+  z-index: 1000000;
+}
+
+.page-enter-active, .page-leave-active {
+  // animation: bounce-in .5s;  
+  transition: all .4s cubic-bezier(0.86, 0, 0.07, 1);
+  transform: translate(30px, 0);
+}
+
+.page-enter, .page-leave-active {
+  // animation: bounce-out .5s;  
+  opacity: 0;
+  transform: translate(-30px, 0);  
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0) }
+  100% { transform: scale(1) }
+}
+@keyframes bounce-out {
+  0% { transform: scale(1) }
+  100% { transform: scale(0) }
+}

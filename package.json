@@ -1,0 +1,45 @@
+{
+  "name": "vahehyar",
+  "version": "1.0.0",
+  "description": "AUT Portal Helper",
+  "author": "Pooya Parsa <pooya@pi0.ir>",
+  "private": true,
+  "dependencies": {
+    "@nuxtjs/axios": "^2.2.0",
+    "@nuxtjs/bootstrap-vue": "^1.0.4",
+    "@nuxtjs/proxy": "^1.1.1",
+    "@nuxtjs/pwa": "^0.2.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "fs-extra": "^4.0.0",
+    "googleapis": "^20.1.0",
+    "nuxt": "1.0.0-alpha.5",
+    "pify": "^3.0.0",
+    "vue": "2.3.4",
+    "vue-server-renderer": "2.3.4",
+    "vue-template-compiler": "2.3.4",
+    "vuelidate": "^0.5.0"
+  },
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "bootstrap-vue": "^0.18.0",
+    "eslint": "^3.15.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-html": "^2.0.0",
+    "eslint-plugin-promise": "^3.4.1",
+    "eslint-plugin-standard": "^2.0.1",
+    "eslint-plugin-vue": "beta",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "standard": "^10.0.2"
+  }
+}
