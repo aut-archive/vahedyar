@@ -9,26 +9,32 @@
 خواهشا توجه كنيد كه فرصت زمانی‌مان خیلی محدود است پس حتما هر چه زودتر نهايتا تا سه شنبه ۲۷ام ساعت ١٢ ظهر اقدام كنيد!
         </b-alert>
         <b-card header="اطلاعات دانشجو">
-            <div>
-                <b-form-fieldset horizontal label="شماره دانشجویی" :state="$v.stdNumber.$error ? 'warning' : ''" >
-                    <b-form-input v-model="$store.state.std.stdNumber" @input="$v.stdNumber.$touch"/>
-                </b-form-fieldset>
+            <form @submit.prevent="submit">
+                <div class="row">
+                    <b-form-fieldset horizontal label="شماره دانشجویی" :state="v($v.stdNumber)" class="col-md-6" tabindex="1">
+                        <b-form-input v-model="$store.state.std.stdNumber" @input="$v.stdNumber.$touch"/>
+                    </b-form-fieldset>
 
-                <b-form-fieldset horizontal label="کد ملی" :state="$v.nationalNumber.$error ? 'warning' : ''" >
-                    <b-form-input v-model="$store.state.std.nationalNumber" @input="$v.nationalNumber.$touch"/>
-                </b-form-fieldset>
+                    <b-form-fieldset horizontal label="کد ملی" :state="v($v.nationalNumber)" class="col-md-6" tabindex="2"
+                        description="از کد ملی برای هویت سنجی دانشجو استفاده می شود."
+                    >
+                        <b-form-input v-model="$store.state.std.nationalNumber" @input="$v.nationalNumber.$touch"/>
+                    </b-form-fieldset>
+                </div>
 
-                <b-form-fieldset horizontal label="سال ورود" :state="$v.entry.$error ? 'warning' : ''">
-                    <b-form-select v-model="$store.state.std.entry" :options="entries" class="mb-3"  @input="$v.entry.$touch"/>
-                </b-form-fieldset>
+                <div class="row">
+                    <b-form-fieldset horizontal label="سال ورود" :state="v($v.entry)" class="col-md-6">
+                        <b-form-select v-model="$store.state.std.entry" :options="entries" class="mb-3"  @input="$v.entry.$touch"/>
+                    </b-form-fieldset>
+                    <b-form-fieldset horizontal label="ترم ثبت نامی" :state="v($v.entry)" class="col-md-6">
+                        <b-form-select v-model="$store.state.std.semester" :options="semesters" class="mb-3" @input="$v.semester.$touch"/>
+                    </b-form-fieldset>
+                </div>
 
-                <b-form-fieldset horizontal label="ترم ثبت نامی" state="$v.entry.$error ? 'warning' : ''">
-                    <b-form-radio v-model="$store.state.std.semester" :options="semesters" class="mb-3" @input="$v.semester.$touch"/>
-                </b-form-fieldset>
-            </div>
-            <div class="text-left">
-                <b-btn variant="success" :disabled="$v.$invalid" to="/register">گام بعدی </b-btn>
-            </div>
+                <div class="text-left">
+                    <b-btn variant="success" :disabled="$v.$invalid" type="submit" tabindex="3">گام بعدی </b-btn>
+                </div>
+            </form>
         </b-card>
     </div>
 </template>
@@ -40,8 +46,8 @@ import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validator
 export default {
   computed: {
     ...mapState('std', ['nationalNumber', 'stdNumber', 'entry', 'semester']),
-    entries: () => ['89 به قبل', '89', '90', '91', '92', '93', '94', '95'].reverse(),
-    semesters: () => ['3', '5', '7', '9', '9 به بعد']
+    entries: () => [ '95', '94', '93', '92', '91', '90', '89', '89 به قبل' ],
+    semesters: () => ['1', '2', '3', '4', '5', '6', '7', '8', '8 به بعد']
   },
   validations: {
     nationalNumber: { required, minLength: minLength(10), maxLength: maxLength(10), numeric },
@@ -49,12 +55,30 @@ export default {
     entry: { required },
     semester: { required }
   },
+  methods: {
+    v ($v) {
+      if ($v.$error) return 'warning'
+      if (!$v.$invalid) return 'success'
+    },
+    submit () {
+      if (!this.$v.$invalid) {
+        this.$router.push('/register')
+      }
+    }
+  },
   watch: {
     stdNumber (val) {
       let e = (val || '').substr(0, 2)
-      console.log(e)
-      if (this.entries.indexOf(e) !== -1) {
-        this.$store.state.std.entry = e
+      if (this.entries.indexOf(e) === -1) {
+        e = this.entries[this.entries.length - 1]
+      }
+      this.$store.state.std.entry = e
+
+      let s = ((96 - e) * 2 + 1) + ''
+      if (this.semesters.indexOf(s) !== -1) {
+        this.$store.state.std.semester = s
+      } else {
+        this.$store.state.std.semester = this.semesters[this.semesters.length - 1]
       }
     }
   }
