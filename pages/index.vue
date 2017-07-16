@@ -48,6 +48,15 @@ export default {
     stdNumber: { required, minLength: minLength(7), maxLength: maxLength(8), numeric },
     entry: { required },
     semester: { required }
+  },
+  watch: {
+    stdNumber (val) {
+      let e = (val || '').substr(0, 2)
+      console.log(e)
+      if (this.entries.indexOf(e) !== -1) {
+        this.$store.state.std.entry = e
+      }
+    }
   }
 }
 </script>
