@@ -40,7 +40,7 @@ import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validator
 export default {
   computed: {
     ...mapState('std', ['nationalNumber', 'stdNumber', 'entry', 'semester']),
-    entries: () => ['89 به قبل', '89', '90', '91', '92', '93', '94', '95'],
+    entries: () => ['89 به قبل', '89', '90', '91', '92', '93', '94', '95'].reverse(),
     semesters: () => ['3', '5', '7', '9', '9 به بعد']
   },
   validations: {

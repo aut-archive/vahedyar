@@ -6,6 +6,10 @@ html, body {
   direction: rtl;
 }
 
+html, body, #__nuxt {
+  height: 100%;
+}
+
 * {
   font-family: 'Sahel', sans-serif !important;  
 }
