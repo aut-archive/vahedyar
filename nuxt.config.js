@@ -25,6 +25,7 @@ module.exports = {
   modules: [
     '@nuxtjs/bootstrap-vue',
     '@nuxtjs/axios',
+    ['@nuxtjs/google-analytics', { ua: 'UA-102573277-1' }],
     ['@nuxtjs/pwa', { workbox: false, icon: { sizes: [ 64, 128 ] } }]
   ],
   plugins: [

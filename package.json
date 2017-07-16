@@ -7,6 +7,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^2.2.0",
     "@nuxtjs/bootstrap-vue": "^1.0.4",
+    "@nuxtjs/google-analytics": "^1.0.0",
     "@nuxtjs/proxy": "^1.1.1",
     "@nuxtjs/pwa": "^0.2.0",
     "body-parser": "^1.17.2",
