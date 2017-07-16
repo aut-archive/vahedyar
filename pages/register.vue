@@ -1,32 +1,32 @@
 <template>
-    <div v-if="loading" class="text-center">
-          <img width="100px" src='~assets/ripple.svg'/>
-    </div>
-    <div v-else>
-        <b-card no-block class="mt-3 mb-3">
-            <b-table striped hover :items="courses" :fields="fields">
-                <template slot="status" scope="{item}">
-                    <b-form-select :options="options" v-model="item.state" />
-                </template>
-            </b-table>
-        </b-card>
+  <div v-if="loading" class="text-center">
+    <img width="100px" src='~assets/ripple.svg' />
+  </div>
+  <div v-else>
+    <b-card no-block class="mt-3 mb-3">
+      <b-table striped hover :items="courses" :fields="fields">
+        <template slot="status" scope="{item}">
+          <b-form-select :options="options" v-model="item.state" />
+        </template>
+      </b-table>
+    </b-card>
 
-        <div class="mt-3 mb-3 text-center">
-            <b-form-checkbox v-model="confirmed">
-              اینجانب به شماره دانشجویی
-              <strong>{{ $store.state.std.stdNumber }}</strong>
-              از صحت اطلاعات فرم بالا اطمینان دارم.
-            </b-form-checkbox>
-            <br>
-            <b-btn variant="primary" :disabled="!confirmed" @click="submit">ثبت و ارسال</b-btn>
-        </div>
+    <div class="mt-3 mb-3 text-center">
+      <b-form-checkbox v-model="confirmed">
+        اینجانب به شماره دانشجویی
+        <strong>{{ $store.state.std.stdNumber }}</strong>
+        از صحت اطلاعات فرم بالا اطمینان دارم.
+      </b-form-checkbox>
+      <br>
+      <b-btn variant="primary" :disabled="!confirmed" @click="submit">ثبت و ارسال</b-btn>
     </div>
+  </div>
 </template>
 
 <script>
 
 export default {
-  middleware: [ 'std' ],
+  middleware: ['std'],
   data () {
     return {
       confirmed: null,
@@ -60,9 +60,13 @@ export default {
       }
     },
     courses () {
+      let { entry, semester } = this.$store.state.std
+      entry = parseInt(entry)
+      semester = parseInt(semester)
+
       return this.origCourses.sort((a, b) => {
-        const d1 = Math.abs(a.semester - this.semester) + Math.abs(a.entry - this.entry)
-        const d2 = Math.abs(b.semester - this.semester) + Math.abs(b.entry - this.entry)
+        const d1 = Math.abs(a.semester - semester) + Math.abs(a.entry - entry)
+        const d2 = Math.abs(b.semester - semester) + Math.abs(b.entry - entry)
         if (d1 === d2) return 0
         return d1 < d2 ? -1 : +1
       })
@@ -70,7 +74,7 @@ export default {
   },
   methods: {
     async submit () {
-      const form = Object.assign({courses: {}}, this.$store.state.std)
+      const form = Object.assign({ courses: {} }, this.$store.state.std)
 
       this.origCourses.forEach(c => {
         form.courses[c.course] = { state: c.state }
