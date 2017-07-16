@@ -5,7 +5,7 @@ CMD npm start
 EXPOSE 3000
 
 COPY package.json yarn.lock /usr/src/app/
-RUN yarn install
+RUN NODE_ENV=build yarn install
 
 COPY . /usr/src/app
 RUN npm run build
