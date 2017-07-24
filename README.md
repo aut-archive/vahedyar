@@ -1,22 +1,5 @@
 # vahedyar
 
-> AUT Portal Helpers
+Amirkabir unit selection is a mess. Students fight with eachother and their professors in order to get their courses. We provided this system to estimate number of people who are going to be enrolled in courses in order to help with this situation.
 
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm install # Or yarn install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+**Fandogh is always by your side :)**
